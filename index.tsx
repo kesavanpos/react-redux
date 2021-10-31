@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Hello from './Hello';
 import './style.css';
-import { store } from 'store';
+import store from './store';
+import Provider from 'react-redux';
 
 interface AppProps {}
 interface AppState {
@@ -13,7 +14,7 @@ class App extends Component<AppProps, AppState> {
   constructor(props) {
     super(props);
     this.state = {
-      name: 'React',
+      name: 'fasdfads',
     };
   }
 
@@ -27,4 +28,9 @@ class App extends Component<AppProps, AppState> {
   }
 }
 
-render(<App />, document.getElementById('root'));
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
