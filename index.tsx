@@ -4,23 +4,23 @@ import Hello from './Hello';
 import './style.css';
 import store from './store';
 import { Provider, connect } from 'react-redux';
-import { FetchUsers } from './actions/userActions';
+import FetchUsers from './actions/userActions';
+import { bindActionCreators } from 'redux';
 
-// interface AppProps {}
-// interface AppState {
-//   name: string;
-// }
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({ FetchUsers: FetchUsers }, dispatch);
+}
+
+function mapStateToProps(state) {
+  return {
+    users: state.users,
+  };
+}
 
 class App extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   name: 'react',
-    // };
-  }
-
-  componentDidMount() {
-    this.props.FetchUsers();
+    console.log(this.props.FetchUsers());
   }
 
   render() {
@@ -32,7 +32,7 @@ class App extends Component {
     );
   }
 }
-export default connect(null, { FetchUsers })(App);
+export default connect(mapStateToProps, matchDispatchToProps)(App);
 
 render(
   <Provider store={store}>
