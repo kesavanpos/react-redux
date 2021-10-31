@@ -1,8 +1,11 @@
-enum ActionTypes {
-  GET_USERS = 'GET_USERS',
-  CREATE_USERS = 'CREATE_USERS',
-  UPDATE_USERS = 'UPDATE_USERS',
-  DELETE_USERS = 'DELETE_USERS',
-}
+import ActionTypes from './userTypes';
+import { getUsers } from '../services/userServices';
 
-export default ActionTypes;
+export const FetchUsers = async (dispatch) => {
+  const data = await getUsers();
+
+  dispatch({
+    type: ActionTypes.GET_USERS,
+    payload: data,
+  });
+};

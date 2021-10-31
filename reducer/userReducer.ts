@@ -1,4 +1,4 @@
-import ActionTypes from '../actions/userActions';
+import ActionTypes from '../actions/userTypes';
 
 interface IUser {
   name: String;
